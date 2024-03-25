@@ -21,7 +21,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Configuration
 public class JwtTokenProvider {
 
-	private static final long EXPIRATION_TIME = 24 * 60 * 60 * 1000; // 24 horas
+	private static final long EXPIRATION_TIME = 4 * 60 * 60 * 1000; // 4 horas
 
 	private static final String key64 = "oFt3J+GfoOXZvET2hTmz7VKBj2w+Pu0RlbFq+1irnc0PTgNfZCgHjByGKdkYMZGCqcWGBwQ3sJMYMItiUUyKgQ==";
 	// private static final SecretKey SECRET_KEY2 =
