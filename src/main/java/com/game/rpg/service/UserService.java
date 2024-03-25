@@ -19,12 +19,8 @@ public class UserService {
 
     public void createUser(User user) {
 
-        if (userRepository.userExists(user.getUsername())) {
-            System.out.println("teste");
-            throw new RuntimeException("O Usuário já existe.");
-        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.createUser(user);
-
+        
     }
 }
