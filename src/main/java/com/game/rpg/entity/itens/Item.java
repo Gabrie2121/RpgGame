@@ -1,13 +1,17 @@
 package com.game.rpg.entity.itens;
 
+import com.game.rpg.enums.ItemType;
+import com.game.rpg.enums.Rarity;
+import com.game.rpg.enums.Reforja;
+
 public class Item {
     private int id;
     private String nome;
     private String descricao;
     private String elemento;
-    private int reforja;
-    private String raridade;
-    private String tipoDePeca;
+    private Reforja reforja;
+    private Rarity raridade;
+    private ItemType tipoDePeca;
     private int danoFisico;
     private int danoMagico;
     private int defesaFisica;
@@ -52,28 +56,28 @@ public class Item {
         this.elemento = elemento;
     }
 
-    public int getReforja() {
+    public Reforja getReforja() {
         return reforja;
     }
 
-    public void setReforja(int reforja) {
+    public void setReforja(Reforja reforja) {
         this.reforja = reforja;
     }
 
-    public String getRaridade() {
+    public Rarity getRaridade() {
         return raridade;
     }
 
-    public void setRaridade(String raridade) {
+    public void setRaridade(Rarity raridade) {
         this.raridade = raridade;
     }
 
-    public String getTipoDePeca() {
+    public ItemType getTipoDePeca() {
         return tipoDePeca;
     }
 
-    public void setTipoDePeca(String tipoDePeca) {
-        this.tipoDePeca = tipoDePeca;
+    public void setTipoDePeca(ItemType itemType) {
+        this.tipoDePeca = itemType;
     }
 
     public int getDanoFisico() {

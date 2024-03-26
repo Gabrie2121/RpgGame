@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.game.rpg.entity.authentication.Login;
+import com.game.rpg.entity.user.Me;
 import com.game.rpg.entity.user.User;
 import com.game.rpg.repository.UserRepository;
 
@@ -34,5 +35,9 @@ public class LoginService {
         }
 
         return false;
+    }
+
+    public Me findUserByUsernamegetRoles(String username) {
+        return userRepository.findUserByUsernamegetRoles(username);
     }
 }

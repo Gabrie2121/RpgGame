@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.game.rpg.commom.JwtTokenProvider;
 import com.game.rpg.entity.authentication.Login;
+import com.game.rpg.entity.user.Me;
 import com.game.rpg.service.AuthenticationService;
 import com.game.rpg.service.LoginService;
 
@@ -40,7 +41,10 @@ public class LoginController {
         if (loginSuccessful) {
             UserDetails userDetails = authenticationService.loadUserByUsername(login.getUsername());
             String token = jwtTokenProvider.criarToken(userDetails);
-            return ResponseEntity.ok().body(token);
+            HashMap<String, String> hash = new HashMap<String, String>();
+
+            hash.put("token", token);
+            return ResponseEntity.ok().body(hash);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
@@ -53,13 +57,15 @@ public class LoginController {
         if (token == null || token.isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token não fornecido");
         }
-        boolean validado = jwtTokenProvider.validarToken(token);
+        String username = jwtTokenProvider.pegarUsuarioDoToken(token);
 
+        Me me = loginService.findUserByUsernamegetRoles(username);
         HashMap<String, String> hash = new HashMap<String, String>();
 
-        hash.put("token", token);
-        hash.put("username", jwtTokenProvider.pegarUsuarioDoToken(token));
-        hash.put("validado?", validado == true ? "Sim" : "Não");
+        hash.put("id", me.getId().toString());
+        hash.put("role", me.getRoleName());
+        hash.put("username", me.getUsername());
+        hash.put("email", me.getEmail());
 
         return ResponseEntity.ok().body(hash);
     }

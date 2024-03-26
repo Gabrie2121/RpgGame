@@ -1,13 +1,16 @@
 package com.game.rpg.entity.user;
 
+import java.sql.Date;
+
 public class User {
 
     Long id;
-    String nome;
     String email;
     String imagem;
     String username;
     String password;
+    Date createdAt;
+    Date lastLogin;
 
     public Long getId() {
         return id;
@@ -15,14 +18,6 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getEmail() {
@@ -55,6 +50,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
     }
 
 }
