@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.game.rpg.commom.helper.UpdateHelper;
 import com.game.rpg.entity.itens.Item;
-import com.game.rpg.enums.Elements;
-import com.game.rpg.enums.ItemType;
-import com.game.rpg.enums.Rarity;
 import com.game.rpg.service.ItemService;
 
 @RestController
@@ -31,16 +32,26 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<String> createItem(@RequestBody Item item) {
-        System.out.println(item.getNome());
-        itemService.createItem(item);
+    @PostMapping(value = "/create", consumes = "multipart/form-data")
+    public ResponseEntity<String> createItem(@RequestPart("file") MultipartFile file,
+            @RequestPart("item") String item) {
+
+        Item newItem = new Item();
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            newItem = objectMapper.readValue(item, Item.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        itemService.createItem(newItem, file);
         return ResponseEntity.status(HttpStatus.CREATED).body("Item created successfully");
     }
 
     @PutMapping("/update/{itemId}")
     public ResponseEntity<String> updateItemField(@PathVariable long itemId,
             @RequestBody UpdateHelper request) {
+
         itemService.updateItemField(itemId, request.getFieldName(), request.getNewValue());
         return ResponseEntity.ok("Item field updated successfully");
     }
