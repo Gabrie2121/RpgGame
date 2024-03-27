@@ -1,31 +1,31 @@
 package com.game.rpg.enums;
 
 public enum Elements {
-    FIRE("Fire"),
-    WATER("Water"),
-    EARTH("Earth"),
-    AIR("Air"),
-    LIGHTNING("Lightning"),
-    ICE("Ice"),
-    LIGHT("Light"),
-    DARKNESS("Darkness"),
-    NATURE("Nature"),
-    CHAOS("Chaos"),
-    DIVINITY("Divinity"),
-    SOUL("Soul"),
-    VOID("Void"),
-    CELESTIAL("Celestial"),
-    PRIMAL("Primal"),
-    OMNI("Omni"),
-    SUPREME("Supreme"),
-    VORTEX("Vortex"),
-    TEMPEST("Tempest"),
-    FLAME("Flame"),
-    SOLAR("Solar"),
-    LUNAR("Lunar"),
-    DAMNED("Damned"),
-    ELDEN("Elden"),
-    DIABOLIC("Diabolic");
+    Fogo("Fogo"),
+    Agua("Água"),
+    Terra("Terra"),
+    Ar("Ar"),
+    Relampago("Relâmpago"),
+    Gelo("Gelo"),
+    Luz("Luz"),
+    Escuridão("Escuridão"),
+    Natureza("Natureza"),
+    Caos("Caos"),
+    Divindade("Divindade"),
+    Alma("Alma"),
+    Vazio("Vazio"),
+    Celestial("Celestial"),
+    Primal("Primal"),
+    Omni("Omni"),
+    Supremo("Supremo"),
+    Vortice("Vórtice"),
+    Tempestade("Tempestade"),
+    Chama("Chama"),
+    Solar("Solar"),
+    Lunar("Lunar"),
+    Condenado("Condenado"),
+    Elden("Elden"),
+    Diabolico("Diabólico");
 
     private final String description;
 
@@ -33,7 +33,7 @@ public enum Elements {
         this.description = description;
     }
 
-    public String getDescription() {
+    public String getName() {
         return description;
     }
 }

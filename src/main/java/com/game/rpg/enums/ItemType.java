@@ -1,23 +1,20 @@
 package com.game.rpg.enums;
 
 public enum ItemType {
-    WEAPON("Weapon"),
-    ACCESSORY("Accessory"),
-    PET("Pet"),
-    CONSUMABLE("Consumable"),
-    TOOL("Tool"),
-    MISC("Miscellaneous"),
-    CURSE("Curse"),
-    AMULET("Amulet"),
-    RING("Ring"),
-    NECKLACE("Necklace"),
-    CHESTPLATE("Chestplate"),
-    HELMET("Helmet"),
-    GAUNTLETS("Gauntlets"),
-    LEGGINGS("Leggings"),
-    BOOTS("Boots"),
-    SHIELD("Shield"),
-    ARTILLERY("Artillery");
+    Arma("Arma"),
+    Acessório("Acessório"),
+    AnimalDeEstimação("Animal de Estimação"),
+    Consumível("Consumível"),
+    Diversos("Diversos"),
+    Amuleto("Amuleto"),
+    Anel("Anel"),
+    Colar("Colar"),
+    Peitoral("Peitoral"),
+    Elmo("Elmo"),
+    Perneiras("Perneiras"),
+    Botas("Botas"),
+    Escudo("Escudo"),
+    Artilharia("Artilharia");
 
     private final String displayName;
 
@@ -25,7 +22,7 @@ public enum ItemType {
         this.displayName = displayName;
     }
 
-    public String getDisplayName() {
+    public String getName() {
         return displayName;
     }
 }

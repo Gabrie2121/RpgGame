@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.game.rpg.commom.helper.UpdateHelper;
 import com.game.rpg.entity.itens.Item;
+import com.game.rpg.enums.Elements;
+import com.game.rpg.enums.ItemType;
+import com.game.rpg.enums.Rarity;
 import com.game.rpg.service.ItemService;
 
 @RestController
@@ -30,6 +33,7 @@ public class ItemController {
 
     @PostMapping("/create")
     public ResponseEntity<String> createItem(@RequestBody Item item) {
+        System.out.println(item.getNome());
         itemService.createItem(item);
         return ResponseEntity.status(HttpStatus.CREATED).body("Item created successfully");
     }
@@ -55,15 +59,9 @@ public class ItemController {
     public ResponseEntity<List<Item>> findItemsByFilters(@RequestParam(required = false) String nome,
             @RequestParam(required = false) String descricao,
             @RequestParam(required = false) String elemento,
-            @RequestParam(required = false) Integer reforja,
             @RequestParam(required = false) String raridade,
-            @RequestParam(required = false) String tipoDePeca,
-            @RequestParam(required = false) Integer danoFisico,
-            @RequestParam(required = false) Integer danoMagico,
-            @RequestParam(required = false) Integer defesaFisica,
-            @RequestParam(required = false) Integer defesaMagica) {
-        List<Item> items = itemService.findItemsByFilters(nome, descricao, elemento, reforja, raridade, tipoDePeca,
-                danoFisico, danoMagico, defesaFisica, defesaMagica);
+            @RequestParam(required = false) String tipoDePeca) {
+        List<Item> items = itemService.findItemsByFilters(nome, descricao, elemento, raridade, tipoDePeca);
         return ResponseEntity.ok(items);
     }
 }

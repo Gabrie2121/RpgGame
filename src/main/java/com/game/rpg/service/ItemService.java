@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.game.rpg.entity.itens.Item;
+import com.game.rpg.enums.Elements;
+import com.game.rpg.enums.ItemType;
+import com.game.rpg.enums.Rarity;
 import com.game.rpg.repository.ItemRepository;
 
 @Service
@@ -29,10 +32,8 @@ public class ItemService {
         return itemRepository.findById(itemId);
     }
 
-    public List<Item> findItemsByFilters(String nome, String descricao, String elemento, Integer reforja,
-            String raridade, String tipoDePeca, Integer danoFisico,
-            Integer danoMagico, Integer defesaFisica, Integer defesaMagica) {
-        return itemRepository.findItemsByFilters(nome, descricao, elemento, reforja, raridade, tipoDePeca,
-                danoFisico, danoMagico, defesaFisica, defesaMagica);
+    public List<Item> findItemsByFilters(String nome, String descricao, String elemento,
+    String raridade, String tipoDePeca) {
+        return itemRepository.findItemsByFilters(nome, descricao, elemento, raridade, tipoDePeca);
     }
 }

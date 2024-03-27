@@ -1,21 +1,21 @@
 package com.game.rpg.entity.itens;
 
+import com.game.rpg.enums.Elements;
 import com.game.rpg.enums.ItemType;
 import com.game.rpg.enums.Rarity;
-import com.game.rpg.enums.Reforja;
 
 public class Item {
-    private int id;
+    private Long id;
     private String nome;
     private String descricao;
     private String elemento;
-    private Reforja reforja;
-    private Rarity raridade;
-    private ItemType tipoDePeca;
-    private int danoFisico;
-    private int danoMagico;
-    private int defesaFisica;
-    private int defesaMagica;
+    private String raridade;
+    private String tipoDePeca;
+    private Double forca;
+    private Double destreza;
+    private Double inteligencia;
+    private Double constituicao;
+    private Double sorte;
     private String imagem;
 
     // Construtor vazio
@@ -24,11 +24,11 @@ public class Item {
 
     // Getters e setters para todas as propriedades
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -56,60 +56,20 @@ public class Item {
         this.elemento = elemento;
     }
 
-    public Reforja getReforja() {
-        return reforja;
-    }
-
-    public void setReforja(Reforja reforja) {
-        this.reforja = reforja;
-    }
-
-    public Rarity getRaridade() {
+    public String getRaridade() {
         return raridade;
     }
 
-    public void setRaridade(Rarity raridade) {
+    public void setRaridade(String raridade) {
         this.raridade = raridade;
     }
 
-    public ItemType getTipoDePeca() {
+    public String getTipoDePeca() {
         return tipoDePeca;
     }
 
-    public void setTipoDePeca(ItemType itemType) {
-        this.tipoDePeca = itemType;
-    }
-
-    public int getDanoFisico() {
-        return danoFisico;
-    }
-
-    public void setDanoFisico(int danoFisico) {
-        this.danoFisico = danoFisico;
-    }
-
-    public int getDanoMagico() {
-        return danoMagico;
-    }
-
-    public void setDanoMagico(int danoMagico) {
-        this.danoMagico = danoMagico;
-    }
-
-    public int getDefesaFisica() {
-        return defesaFisica;
-    }
-
-    public void setDefesaFisica(int defesaFisica) {
-        this.defesaFisica = defesaFisica;
-    }
-
-    public int getDefesaMagica() {
-        return defesaMagica;
-    }
-
-    public void setDefesaMagica(int defesaMagica) {
-        this.defesaMagica = defesaMagica;
+    public void setTipoDePeca(String tipoDePeca) {
+        this.tipoDePeca = tipoDePeca;
     }
 
     public String getImagem() {
@@ -119,4 +79,45 @@ public class Item {
     public void setImagem(String imagem) {
         this.imagem = imagem;
     }
+
+    public Double getForca() {
+        return forca;
+    }
+
+    public void setForca(Double forca) {
+        this.forca = forca;
+    }
+
+    public Double getDestreza() {
+        return destreza;
+    }
+
+    public void setDestreza(Double destreza) {
+        this.destreza = destreza;
+    }
+
+    public Double getInteligencia() {
+        return inteligencia;
+    }
+
+    public void setInteligencia(Double inteligencia) {
+        this.inteligencia = inteligencia;
+    }
+
+    public Double getConstituicao() {
+        return constituicao;
+    }
+
+    public void setConstituicao(Double constituicao) {
+        this.constituicao = constituicao;
+    }
+
+    public Double getSorte() {
+        return sorte;
+    }
+
+    public void setSorte(Double sorte) {
+        this.sorte = sorte;
+    }
+
 }

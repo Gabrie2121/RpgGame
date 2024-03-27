@@ -1,29 +1,24 @@
 package com.game.rpg.enums;
 
 public enum Rarity {
-    COMMON("Comum", 35),
-    UNCOMMON("Incomum", 20),
-    RARE("Raro", 12),
-    EPIC("Épico", 8),
-    LEGENDARY("Lendário", 5),
-    MYTHICAL("Mítico", 3),
-    COSMIC("Cósmico", 1),
-    ETHEREAL("Eterno", 0.3),
-    CELESTIAL("Celestial", 0.1);
+    Comum("Comum"),
+    Incomum("Incomum"),
+    Raro("Raro"),
+    Epico("Épico"),
+    Lendário("Lendário"),
+    Mítico("Mítico"),
+    Cósmico("Cósmico"),
+    Eterno("Eterno"),
+    Celestial("Celestial");
 
     private final String name;
-    private final double chance;
 
-    Rarity(String name, double chance) {
+    Rarity(String name) {
         this.name = name;
-        this.chance = chance;
     }
 
     public String getName() {
         return name;
     }
 
-    public double getChance() {
-        return chance;
-    }
 }

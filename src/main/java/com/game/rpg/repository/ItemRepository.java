@@ -9,6 +9,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.game.rpg.entity.itens.Item;
+import com.game.rpg.enums.Elements;
+import com.game.rpg.enums.ItemType;
+import com.game.rpg.enums.Rarity;
 import com.game.rpg.mapper.ItemRowMapper;
 
 @Repository
@@ -21,21 +24,22 @@ public class ItemRepository {
     }
 
     public void createItem(Item item) {
-        String sql = "INSERT INTO Item (nome, descricao, elemento, reforja, raridade, tipo_de_peca, dano_fisico, dano_magico, defesa_fisica, defesa_magica, imagem) "
+        String sql = "INSERT INTO Item (nome, descricao, elemento, raridade, tipo_de_peca, forca, destreza, inteligencia, constituicao,sorte, imagem) "
                 +
-                "VALUES (:nome, :descricao, :elemento, :reforja, :raridade, :tipoDePeca, :danoFisico, :danoMagico, :defesaFisica, :defesaMagica, :imagem)";
-
+                "VALUES (:nome, :descricao, :elemento, :raridade, :tipoDePeca, :forca, :destreza, :inteligencia, :constituicao, :sorte, :imagem)";
+        System.out.println(item.getNome());
         MapSqlParameterSource parameters = new MapSqlParameterSource();
+
         parameters.addValue("nome", item.getNome());
         parameters.addValue("descricao", item.getDescricao());
         parameters.addValue("elemento", item.getElemento());
-        parameters.addValue("reforja", item.getReforja());
         parameters.addValue("raridade", item.getRaridade());
         parameters.addValue("tipoDePeca", item.getTipoDePeca());
-        parameters.addValue("danoFisico", item.getDanoFisico());
-        parameters.addValue("danoMagico", item.getDanoMagico());
-        parameters.addValue("defesaFisica", item.getDefesaFisica());
-        parameters.addValue("defesaMagica", item.getDefesaMagica());
+        parameters.addValue("forca", item.getForca());
+        parameters.addValue("destreza", item.getDestreza());
+        parameters.addValue("inteligencia", item.getInteligencia());
+        parameters.addValue("constituicao", item.getConstituicao());
+        parameters.addValue("sorte", item.getSorte());
         parameters.addValue("imagem", item.getImagem());
 
         template.update(sql, parameters);
@@ -61,11 +65,10 @@ public class ItemRepository {
         return template.queryForObject(sql, paramMap, new ItemRowMapper());
     }
 
-    public List<Item> findItemsByFilters(String nome, String descricao, String elemento, Integer reforja,
-            String raridade, String tipoDePeca, Integer danoFisico,
-            Integer danoMagico, Integer defesaFisica, Integer defesaMagica) {
+    public List<Item> findItemsByFilters(String nome, String descricao, String elemento,
+            String raridade, String tipoDePeca) {
 
-        StringBuilder sql = new StringBuilder("SELECT * FROM Item WHERE 1=1 ");
+        StringBuilder sql = new StringBuilder("SELECT id, nome, descricao FROM Item WHERE 1=1 ");
         MapSqlParameterSource parameters = new MapSqlParameterSource();
 
         if (nome != null) {
@@ -83,11 +86,6 @@ public class ItemRepository {
             parameters.addValue("elemento", elemento);
         }
 
-        if (reforja != null) {
-            sql.append("AND reforja = :reforja ");
-            parameters.addValue("reforja", reforja);
-        }
-
         if (raridade != null) {
             sql.append("AND raridade = :raridade ");
             parameters.addValue("raridade", raridade);
@@ -98,26 +96,14 @@ public class ItemRepository {
             parameters.addValue("tipoDePeca", tipoDePeca);
         }
 
-        if (danoFisico != null) {
-            sql.append("AND dano_fisico = :danoFisico ");
-            parameters.addValue("danoFisico", danoFisico);
-        }
+        List<Item> result = template.query(sql.toString(), parameters, (rs, i) -> {
+            Item item = new Item();
+            item.setId((Long) rs.getLong("id"));
+            item.setNome((String) rs.getString("nome"));
+            item.setDescricao((String) rs.getString("descricao"));
+            return item;
+        });
 
-        if (danoMagico != null) {
-            sql.append("AND dano_magico = :danoMagico ");
-            parameters.addValue("danoMagico", danoMagico);
-        }
-
-        if (defesaFisica != null) {
-            sql.append("AND defesa_fisica = :defesaFisica ");
-            parameters.addValue("defesaFisica", defesaFisica);
-        }
-
-        if (defesaMagica != null) {
-            sql.append("AND defesa_magica = :defesaMagica ");
-            parameters.addValue("defesaMagica", defesaMagica);
-        }
-
-        return template.query(sql.toString(), parameters, new ItemRowMapper());
+        return result;
     }
 }
